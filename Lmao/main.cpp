@@ -3,8 +3,9 @@
 
 int main()
 {
-	std::vector<std::string> lox = { "lol", "kke", "meme" };
-	Streaming::FileStream::writeFile("test.txt", lox);
+	setlocale(LC_ALL, "rus");
+	std::vector<std::string> mem = { "lol", "kke", "meme" };
+	Streaming::FileStream::writeFile("test.txt", mem);
 	std::vector<std::string> lines = Streaming::FileStream::readFile(std::ifstream("test.txt"));
 	for (int i = 0; i < lines.size(); i++)
 	{
@@ -13,29 +14,22 @@ int main()
 
 	HINSTANCE load;
 	load = LoadLibrary(L"LmaoDll.dll");
-	typedef int (*sum) (int, int);
-	typedef int (*div) (int, int);
-	typedef int (*mul) (int, int);
-	typedef int (*sub) (int, int);
+	typedef bool (*search) (std::string, char);
 
-	sum Sum;
-	div Div;
-	mul Mul;
-	sub Sub;
+	search Search;
 
-	Sum = (sum)GetProcAddress(load, "Sum");
-	Div = (div)GetProcAddress(load, "Div");
-	Mul = (mul)GetProcAddress(load, "Mul");
-	Sub = (sub)GetProcAddress(load, "Sub");
+	Search = (search)GetProcAddress(load, "SearchSymbol");
 
-	int x, y;
+	std::string word;
+	char symbol;
 
-	std::cin >> x >> y;
+	std::cin >> word >> symbol;
 
-	std::cout << Sum(x, y) << std::endl;
-	std::cout << Div(x, y) << std::endl;
-	std::cout << Mul(x, y) << std::endl;
-	std::cout << Sub(x, y) << std::endl;
+	if (Search(word, symbol))
+		std::cout << "слово " << word << " содержит " << symbol << std::endl;
+	else
+		std::cout << "слово " << word << " не содержит " << symbol << std::endl;
+	
 
 	FreeLibrary(load);
 }

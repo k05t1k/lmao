@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Math.cpp">
+    <ClCompile Include="meme.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Math.h">
+    <ClInclude Include="meme.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
